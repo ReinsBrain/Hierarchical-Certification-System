@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+ <title>World Kite Organization</title>
+ <link rel="shortcut icon" href="../favicon.ico" />
+ <link href="../css/global.css" rel="stylesheet" type="text/css" />
+ <meta name="title" content="World Kite Organization" />
+ <meta name="description" content="The World Kite Organization is a non-profit organization dedicated to the development and promotion of safe kiting worldwide. Learn to ride or teach with our programs offered through many schools worldwide and earn your certifcation that commands respect." />
+ <link rel="image_src" href="http://worldkite.org/g/thumbnail.jpg" />
+
+ <style type="text/css" >
+ #pubprof { color:#000; }
+ #header > .title { font-size:46pt; top:56px; color:#000; }
+ #footer { background-color:#fff; margin-top:8px; padding-top:0px; color:#000; text-align:left; border-top:1px solid black; }
+ #copyright { color:#000; margin-top:2px; }
+ </style>
+</head>
+<body>
+
+ <div id="page">
+  <div id="header">
+   <a id="logo" href="/"><img src="../g/logo.png" /></a>
+   <h1 class="title">Member Profile</h1>
+  </div>
+  <div id="content">
+
+<div id="pubprof">
+{%if member %}
+    <h1>{{member.fnam}} {{member.lnam}}</h1>
+    <label>Member since:</label> <span>{{member.created}}</span>
+        {% for c in member.certifications %}
+        <fieldset>
+            <legend>{{c.template.short}} {% if c.incomplete %}(incomplete){% endif %}</legend>
+            <label>Registered by:</label> <span>{{c.modifiedBy}} on {{c.modified}}</span>
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                {% for sc in c.scores %}
+                <tr>
+                    <td>{{sc.certtemp_elem.key.name}}</td>
+                    <td>{{sc.certtemp_elem.short}}</td>
+                    <td>{{sc.score}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </fieldset>
+        {% endfor %}
+
+{% else %}
+The profile could not be found.
+{% endif %}
+</div>
+  </div>
+  <div id="footer">
+   <div id="copyright" style="color:#000;">&copy Copyright 2011 WorldKite.org - All rights reserved. </div>
+  </div>
+ </div>
+
+</body>
+</html>
+ 

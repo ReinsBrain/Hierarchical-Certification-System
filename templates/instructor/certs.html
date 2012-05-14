@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+ <title>World Kite Organization :: Admin - Certifications</title>
+ <link rel="shortcut icon" href="/favicon.ico" />
+ <link href="/css/global.css" rel="stylesheet" type="text/css" />
+ <meta name="title" content="World Kite Organization" />
+ <meta name="description" content="The World Kite Organization is a non-profit organization dedicated to the development and promotion of safe kiting worldwide. Learn to ride or teach with our programs offered through many schools worldwide and earn your certifcation that commands respect." />
+ <link rel="image_src" href="http://worldkite.org/g/thumbnail.jpg" />
+
+ <style type="text/css" ></style>
+<link rel="stylesheet" href="../css/nyroModal.css" type="text/css" media="screen" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nyroModal.custom.js"></script>
+<!--[if IE 6]> <script type="text/javascript" src="../js/jquery.nyroModal-ie6.min.js"></script> <![endif]-->
+<script type="text/javascript">
+    $(function() {
+        $('.nyroModal').nyroModal();
+    });
+</script>
+<script type="text/javascript">
+var mustscore = {};var musttaskscore = {};
+musttaskscore = {{member.musttaskscorejson|safe}};
+{% for ctl in member.canteach %}
+{% if ctl.mustscore %} mustscore["{{ctl.level}}"] = true; {% else %} mustscore["{{ctl.level}}"] = false; {% endif %}
+{% endfor %}
+function CheckMustScore(select,check){ chk = document.getElementById(check); chk.disabled = mustscore[select.options[select.selectedIndex].value]; }
+</script>
+
+    <script type="text/javascript" id="main">
+    function main() { $('#gallerythumbs a').nyroModal(); }
+</script>
+</head>
+<body onload="main();">
+ <div id="page">
+  <div id="header">
+   <div class="login" style="position:absolute; left:952px; top:-4px; z-index:100; font-size:9pt; " ><a href="{{ url }}">{{ url_linktext }}</a></div>
+   <a id="logo" href="/"><img src="../g/logo.png" /></a>
+   <h1 class="title">World Kite Organization</h1>
+
+   
+   <menu>
+       <li><a href="/instructor/certifications">Certified Students</a></li>
+       <li><a href="#">Your Feedback</a></li>
+       <li><a href="certify_school.html">Certify your School</a></li>
+       <li><a href="about_us.html">About Us</a></li>
+       <li><a href="contact.html">Contact Us</a></li>
+   </menu>
+  </div>
+  <div id="content">
+
+<div class="article app">
+<fieldset>
+<legend>Certifications</legend>
+
+    <table >
+        <thead>
+        <tr>
+            <th>Template</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Done</th>
+            <th>Actions</th>
+        </tr>
+        <form action="/instructor/certifications" method="post">
+            <tr>
+                <td><select name="ctemp" onchange="CheckMustScore(this,'newcompleted');"><option disabled="disabled" selected="true" >select</option>{% for ctl in member.canteach %}<option value="{{ctl.level}}" {% if ctl.mustscore %} mustscore="true" {% endif %} >{{ctl.level}}</option>{% endfor %}</select></td>
+                <td><input type="text" name="recipient" maxlength="128" style="width:18em;" /></td>
+                <td><input type="text" name="fnam" maxlength="34" style="width:13em;" /></td>
+                <td><input type="text" name="lnam" maxlength="34" style="width:13em;" /></td>
+                <td align="center"><input type="checkbox" id="newcompleted" name="completed" value="1" disabled="disabled" /></td>
+                <td><input type="submit" name="method" value="post" /></td>
+            </tr>
+
+        </form>
+        </thead>
+        {% for c in certs %}
+        <form action="/instructor/certifications" method="post">
+            <tr>
+                <td>{{c.template.key.name}}</td>
+                <td>{{c.owner.key.name}}</td>
+                <td>{{c.owner.fnam}}</td>
+                <td>{{c.owner.lnam}}</td>
+                <td align="center">
+                    <input type="checkbox" name="completed" value="1"
+                    {% if c.completed %}
+                    checked="checked"
+                    {% endif %}
+                    {% if member.mustscore %}
+                    disabled="disabled"
+                    {% endif %}
+                    />
+                </td>
+                <td>{% if c.owner.user %} <a href="/instructor/certifications?certid={{c.key.id}}">scores</a> </td>
+                {% else %}<input type="submit" value="update" name="method" /> <input type="submit" name="method" value="delete" /> <a href="/instructor/certifications?certid={{c.key.id}}">scores</a> {% endif %}
+                </td>
+                <input type="hidden" name="id" value="{{c.key.id}}" />
+            </tr>
+        </form>
+        {% endfor %}
+    </table>
+
+</fieldset>
+
+</div>
+
+
+
+<br style="float:none; clear:both; line-height:0px;" />
+
+  </div> 
+
+  <div id="footer">
+   <menu>
+    <li><a href="learn_kite.html">Learn to Kite</a></li>
+    <li><a href="become_a_kite_instructor.html">Become an Instructor</a></li>
+    <li><a href="certify_school.html">Certify your School</a></li>
+    <li><a href="about_us.html">About Us</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+   </menu>
+   <div id="copyright">&copy Copyright 2011 WorldKite.org - All rights reserved.<br />
+   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />Work materials and information to members is<br />
+   licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons</a>
+   </div> 
+  </div>
+ </div>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+    (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
+
+</body>
+</html>
+ 

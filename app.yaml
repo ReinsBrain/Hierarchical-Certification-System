@@ -1,0 +1,49 @@
+application: wkoapp
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /css
+  static_dir: css
+
+- url: /g
+  static_dir: g
+
+- url: /imgs
+  static_dir: imgs
+
+- url: /gallery
+  static_dir: gallery
+
+- url: /js
+  static_dir: js
+
+- url: /register
+  script: register.py
+
+- url: /public
+  script: pubprof.py
+
+- url: /instructor/.*
+  script: instructor.py
+  login: required
+
+- url: /examiner/.*
+  script: examiner.py
+  login: required
+
+- url: /master/.*
+  script: master.py
+  login: required
+
+- url: /admin/.*
+  script: admin.py
+  login: admin
+
+- url: .*
+  script: main.py

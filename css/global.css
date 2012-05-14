@@ -1,0 +1,126 @@
+﻿html { background: url(g/background.jpg) no-repeat right center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+body { margin:0px; padding:0px; font-family:'Trebuchet MS', sans-serif; }
+
+h1 { margin-bottom:0px; }
+p { margin-top:0px; }
+
+#page {  width:1000px; margin:0px; margin-top:8px; margin-bottom:8px; padding:0px; padding-top:0px; margin-left:auto; margin-right:auto;
+ }
+
+#header { height:110px; margin:0px; position:relative; background-image:url('../g/head_bg.jpg'); background-repeat:no-repeat;
+-moz-border-radius:20px 20px 0 0; 
+-webkit-border-radius:20px 20px 0 0; 
+border-radius:20px 20px 0 0;          
+           }
+#header > .title { font-family:Impact; text-transform:uppercase; text-align:right; position:absolute; top:8px; left:10px;
+    color:#007cc3; /* color: rgba(0,0,255,0.5); */ height:80px; line-height:80px;
+text-align:center; font-size:49pt; letter-spacing:0.0em; margin-top:0px; margin-bottom:0px; }
+
+#logo { position:absolute; right:12px; bottom:20px; text-decoration:none; }
+
+#login { text-align:right; float:right;  z-index:100; font-size:9pt;  }
+
+#header > menu { position:absolute; width:780px; top:66px; margin-left:6px; padding:0px; }
+
+#header > menu > li { text-align:center; float:left; background-color:rgba(0,149,218,1);  font-size:10pt;
+height:24px; line-height:24px; list-style-type:none;
+margin-left:4px; margin-right:4px; padding-left:16px; padding-right:16px;
+behavior: url(PIE.htc);                 
+-moz-border-radius:14px;
+-webkit-border-radius:14px;
+border-radius:14px;
+ border:2px solid rgba(0,149,218,0);
+}
+
+#header > menu > li:hover { border-color:rgba(0,149,218,0.65); background-color:rgba(0,149,218,0.35); }
+
+#header > menu > li > a { text-decoration:none; display:block; color:#fff; font-family:'Trebuchet MS', sans-serif; font-weight:bold;  }
+#header > menu > li > a:hover { /* color:#f58220; */ }
+#header > menu > li:hover { position:relative; z-index:100; }
+
+#header > menu > li:hover ul {display:block;  }
+
+#header > menu > li > ul { width:84px; list-style-type:none; display:none;
+margin:0px; margin-left:-16px; margin-top:-24px; padding:0px; padding-top:24px; padding-left:20px; padding-right:8px;
+behavior: url(PIE.htc);
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#e77817), to(#fdec02));
+background: -moz-linear-gradient(#e77817, #fdec02);
+background: linear-gradient(#e77817, #fdec02); 
+-pie-background: linear-gradient(#e77817, #fdec02);  
+-moz-border-radius:13px; -webkit-border-radius:13px; border-radius:13px;
+}
+
+#header > menu > li > ul > li > a { font-family:sans-serif; font-weight:bold; color:#FFF; text-decoration:none; }
+#header > menu > li > ul > li > a:hover {  color:#f58220; }
+
+#content { margin:0px; /*background-color:#0095da;*/ background-color:rgba(255,255,255,0.35); color:#fff; padding:4px; padding-left:18px; padding-right:18px; margin-bottom:0px; }
+
+.article { height:222px; padding-left:8px; padding-right:8px; width:468px; float:left; margin-top:8px; background-image:url('g/ditherbg.png');  background-position:left; background-repeat:no-repeat;
+-moz-border-radius:0 15px 0 0; -webkit-border-radius:0 15px 0 0; border-radius:0 15px 0 0;           
+            }
+.article p { color:#0073aa; font-size:15pt; text-align:justify;  }
+.article p:last-child { margin-bottom:3px; }
+.article h1 { font-family:Impact; font-size:17pt; text-shadow:3px 3px 2px #0073aa; margin-top:0px; }
+.article h1:first-child { }
+.article > img { width:226px; float:right; margin-top:8px; margin-bottom:2px; margin-left:12px; margin-right:0px; behavior: url(PIE.htc);-moz-border-radius:13px;-webkit-border-radius:13px;border-radius:13px;}
+
+.article:first-child { padding:0; border:none; height:auto; width:100%; float:none; background-image:none; margin-top:0px; }
+.article:first-child p { font-size:18pt; text-shadow:1px 1px 7px #fff;}
+.article:first-child img { width:468px;  }
+.article:first-child h1 { font-size:32pt; text-shadow:4px 4px 3px #0073aa; }
+.article:first-child .col { float:left; width:468px; }
+.article:first-child .col:nth-child(2) { margin-left:24px; }
+.article:nth-child(2n+2) { margin-left:-8px; clear:left; }
+.article:nth-child(2n+3) { margin-left:10px; margin-right:-10px; }
+
+.app { color:#000;}
+
+#footer { background-color:#111; margin:0px; padding-top:8px; padding-bottom:8px; text-align:center;
+-moz-border-radius:0 0 20px 20px; 
+-webkit-border-radius:0 0 20px 20px; 
+border-radius:0 0 20px 20px ;            }
+#footer > menu { margin:0px; display:block; margin-bottom:4px;  }
+#footer > menu > li { display:inline; list-style-type:none; margin-right:12px; margin-left:12px; }
+#footer > menu > li:first-child { margin-left:0px; }
+#footer > menu > li:last-child { margin-right:0px; }
+#footer > menu > li > a { color:#fff; text-decoration:none; }
+#footer > menu > li > a:hover { color:#f58220; }
+#footer > menu > li > a:visited { color:#f58220; }
+#footer #copyright { color:#fff; font-size:9pt;  }
+
+
+
+ .button { height:18pt; background-color:#007cc3; border:2px solid #0093dd; text-decoration:none; float:right; text-shadow:none;
+behavior: url(PIE.htc);                 
+ -moz-border-radius:12pt; 
+ -webkit-border-radius:12pt;
+ border-radius:12pt;  
+ font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+ font-size:14pt; line-height:14pt;
+ padding-left:6px; padding-right:6px;
+ color:#0F0;
+font-style:italic;    
+ }
+
+.button:hover { color:#fff;  }
+
+.article:first-child .button { height:19pt; border:3px solid #0093dd;
+-moz-border-radius:15pt; 
+-webkit-border-radius:15pt;
+border-radius:15pt;
+font-size:16pt; line-height:16pt;
+  }
+  
+#gallerythumbs { text-align:center; position:relative; margin-top:4px; }
+#gallerythumbs a { text-decoration:none; z-index:2; position:relative; }
+#gallerythumbs img { border-radius:12px; }
+
+#gallerythumbs > a { display: table-cell; text-align:center; vertical-align:middle; height:108px; width:108px; padding:6px; margin-bottom:-8px; border-radius:12px; }
+#gallerythumbs > a:hover { background-color:rgba(179,204,191,0.5); }
+#gallerthumbs > a > img { vertical-align:middle;   }

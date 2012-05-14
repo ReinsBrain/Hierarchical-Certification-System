@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+ <title>World Kite Organization :: Admin - Certification Template</title>
+ <link rel="shortcut icon" href="/favicon.ico" />
+ <link href="/css/global.css" rel="stylesheet" type="text/css" />
+ <meta name="title" content="World Kite Organization" />
+ <meta name="description" content="The World Kite Organization is a non-profit organization dedicated to the development and promotion of safe kiting worldwide. Learn to ride or teach with our programs offered through many schools worldwide and earn your certifcation that commands respect." />
+ <link rel="image_src" href="http://worldkite.org/g/thumbnail.jpg" />
+
+ <style type="text/css" ></style>
+<link rel="stylesheet" href="../../css/nyroModal.css" type="text/css" media="screen" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.nyroModal.custom.js"></script>
+<!--[if IE 6]>
+    <script type="text/javascript" src="../../js/jquery.nyroModal-ie6.min.js"></script> <![endif]-->
+<script type="text/javascript">
+    $(function() {
+        $('.nyroModal').nyroModal();
+    });
+</script>
+<script type="text/javascript">
+    function UpdateForm(formid,element){
+        var frm = document.getElementById(formid);
+        frm[element.name].disabled = false;
+        frm[element.name].value = element.value;
+    }
+</script>
+<script type="text/javascript" id="main">
+    function main() { $('#gallerythumbs a').nyroModal(); }
+</script>
+</head>
+<body onload="main();">
+ <div id="page">
+  <div id="header">
+   <div class="login" style="position:absolute; left:952px; top:-4px; z-index:100; font-size:9pt; " ><a href="{{ url }}">{{ url_linktext }}</a></div>
+   <a id="logo" href="/"><img src="../g/logo.png" /></a>
+   <h1 class="title">World Kite Organization</h1>
+
+   
+   <menu>
+       <li><a href="/admin/certifications">Certifications</a></li>
+       <li><a href="/admin/templates">Certification Templates</a></li>
+       <li><a href="/admin/members">Members</a></li>
+   </menu>
+  </div>
+  <div id="content">
+
+<div class="article app">
+<fieldset><legend>Certifcation Template :: <b>{{ctemp.key.name}}</b></legend>
+<form id="{{ctemp.key.name}}" action="/admin/templates" method="post">
+<input type="hidden" name="keyname" value="{{ctemp.key.name}}" />
+<input type="hidden" name="short" disabled="disabled" />
+<input type="hidden" name="desc" disabled="disabled" />
+<input type="hidden" name="prereq" disabled="disabled" />
+<input type="hidden" name="note" disabled="disabled" />
+</form>
+<table border="0" cellspacing="0" cellpadding="2">
+<tr><th>short</th><th>desc</th><th>prereq</th><th>-note</th><th>Actions</th></tr>
+<tr>
+<td><input type="text" {% if ctemp.short %}value="{{ctemp.short}}"{% endif %} name="short" onchange="UpdateForm('{{ctemp.key.name}}',this);" maxlength="40" style="width:14em;" /></td>
+<td><input type="text" {% if ctemp.desc %}value="{{ctemp.desc}}"{% endif %} name="desc" onchange="UpdateForm('{{ctemp.key.name}}',this);" maxlength="100" style="width:26em;" /></td>
+<td><input type="text" {% if ctemp.prereq.key.name %}value="{{ctemp.prereq.key.name}}"{% endif %} name="prereq" onchange="UpdateForm('{{ctemp.key.name}}',this);" maxlength="3" style="width:3em;" /></td>
+<td><input type="text" {% if ctemp.note %}value="{{ctemp.note}}"{% endif %} name="desc" onchange="UpdateForm('{{ctemp.key.name}}',this);" maxlength="100" style="width:16em;" /></td>
+<td><input type="submit" name="method" value="update" form="{{ctemp.key.name}}" style="font-size:8pt;"/><input type="submit" name="method" form="{{ctemp.key.name}}" value="delete" style="font-size:8pt;"/></td>
+
+</tr>
+</table>
+
+<fieldset><legend>Elements [Tasks]</legend>
+<form id="newElement" action="/admin/elements" method="post">
+<input type="hidden" name="ord" disabled="disabled" />
+<input type="hidden" name="short" disabled="disabled" />
+<input type="hidden" name="desc" disabled="disabled" />
+<input type="hidden" name="prereq" disabled="disabled" />
+<input type="hidden" name="note" disabled="disabled" />
+<input type="hidden" name="ctkey" value="{{ctemp.key.name}}" />
+</form>
+<table border="0" cellspacing="0" cellpadding="2">
+<tr>
+<th>ord</th><th>short</th><th>desc</th><th>prereq</th><th>-note</th><th>Actions</th>
+</tr>
+<tr>
+ <td>{{ctemp.key.name}}-&nbsp;<input type="text" name="ord" onchange="UpdateForm('newElement',this);" maxlength="2" style="width:2ex;" /></td>
+ <td><input type="text" name="short" onchange="UpdateForm('newElement',this);" maxlength="50" style="width:13em;" /></td>
+ <td><input type="text" name="desc" onchange="UpdateForm('newElement',this);" maxlength="100" style="width:20em;" /></td>
+ <td><input type="text" name="prereq" onchange="UpdateForm('newElement',this);" maxlength="5" style="width:3em;"/></td>
+ <td><input type="text" name="note" onchange="UpdateForm('newElement',this);" maxlength="100" style="width:13em;" /></td>
+ <td  style="font-size:8pt;"><input type="submit" name="method" form="newElement" value="post" />new element</td>
+</tr>
+{% for el in ctemp.elements %}
+<tr>
+<form id="{{el.key.name}}" action="/admin/elements" method="post">
+<input type="hidden" name="short" disabled="disabled" />
+<input type="hidden" name="desc" disabled="disabled" />
+<input type="hidden" name="prereq" disabled="disabled" />
+<input type="hidden" name="note" disabled="disabled" />
+<input type="hidden" name="elkey" value="{{el.key.name}}" />
+<input type="hidden" name="ctkey" value="{{ctemp.key.name}}"/>
+</form>
+ <td>{{el.key.name}}</td>
+ <td><input type="text" name="short" onchange="UpdateForm('{{el.key.name}}',this);" value="{{el.short}}" maxlength="50" style="width:13em;" /></td>
+ <td><input type="text" name="desc" onchange="UpdateForm('{{el.key.name}}',this);" {% if el.desc %} value="{{el.desc}}" {% endif %} maxlength="100"  style="width:20em;" /></td>
+ <td><input type="text" name="prereq" onchange="UpdateForm('{{el.key.name}}',this);" {% if el.prereq %} value="{{el.prereq.key.name}}" {% endif %} maxlength="5" style="width:3em;" /></td>
+ <td><input type="text" name="note" onchange="UpdateForm('{{el.key.name}}',this);" {% if el.note %}value="{{el.note}}"{% endif %} maxlength="100"  style="width:13em;" /></td>
+ <td style="font-size:8pt;"><input type="submit" name="method" form="{{el.key.name}}" value="update" /> <input type="submit" name="method" form="{{el.key.name}}" value="delete" /></td>
+</tr>
+{% for tsk in el.tasks %}
+<tr>
+<form id="{{tsk.key.name}}" action="/admin/tasks" method="post">
+<input type="hidden" name="short" disabled="disabled" />
+<input type="hidden" name="desc" disabled="disabled" />
+<input type="hidden" name="prereq" disabled="disabled" />
+<input type="hidden" name="note" disabled="disabled" />
+<input type="hidden" name="tskkey" value="{{tsk.key.name}}" />
+<input type="hidden" name="ctkey" value="{{ctemp.key.name}}"/>
+</form>
+<td>{{tsk.key.name}}</td>
+<td><input type="text" name="short" onchange="UpdateForm('{{tsk.key.name}}',this);" value="{{tsk.short}}" maxlength="50" style="width:13em;" /></td>
+<td><input type="text" name="desc" onchange="UpdateForm('{{tsk.key.name}}',this);" {% if tsk.desc %} value="{{tsk.desc}}" {% endif %} maxlength="100"  style="width:20em;" /></td>
+<td><input type="text" name="prereq" onchange="UpdateForm('{{tsk.key.name}}',this);" {% if tsk.prereq %} value="{{tsk.prereq.key.name}}" {% endif %} maxlength="7" style="width:4em;" /></td>
+<td><input type="text" name="note" onchange="UpdateForm('{{tsk.key.name}}',this);" {% if tsk.note %}value="{{tsk.note}}"{% endif %} maxlength="100"  style="width:13em;" /></td>
+<td style="font-size:8pt;"><input type="submit" name="method" form="{{tsk.key.name}}" value="update" /> <input type="submit" name="method" form="{{tsk.key.name}}" value="delete" /></td>
+</tr>
+{% endfor %}
+    <tr>
+        <form id="newTask{{el.key.name}}" action="/admin/tasks" method="post">
+            <input type="hidden" name="ord" disabled="disabled" />
+            <input type="hidden" name="short" disabled="disabled" />
+            <input type="hidden" name="desc" disabled="disabled" />
+            <input type="hidden" name="prereq" disabled="disabled" />
+            <input type="hidden" name="note" disabled="disabled" />
+            <input type="hidden" name="elkey" value="{{el.key.name}}" />
+            <input type="hidden" name="ctkey" value="{{ctemp.key.name}}"/>
+        </form>
+        <td>{{el.key.name}}-&nbsp;<input type="text" name="ord" onchange="UpdateForm('newTask{{el.key.name}}',this);" maxlength="2" style="width:2ex;" /></td>
+        <td><input type="text" name="short" onchange="UpdateForm('newTask{{el.key.name}}',this);" maxlength="50" style="width:13em;" /></td>
+        <td><input type="text" name="desc" onchange="UpdateForm('newTask{{el.key.name}}',this);" maxlength="100" style="width:20em;" /></td>
+        <td><input type="text" name="prereq" onchange="UpdateForm('newTask{{el.key.name}}',this);" maxlength="7" style="width:4em;"/></td>
+        <td><input type="text" name="note" onchange="UpdateForm('newTask{{el.key.name}}',this);" maxlength="100" style="width:13em;" /></td>
+        <td style="font-size:8pt;"><input type="submit" name="method" form="newTask{{el.key.name}}" value="post" />new task</td>
+    </tr>
+    {% endfor %}
+</table>
+</fieldset>
+
+
+
+
+</div>
+
+
+
+<br style="float:none; clear:both; line-height:0px;" />
+
+  </div> 
+
+  <div id="footer">
+   <menu>
+    <li><a href="learn_kite.html">Learn to Kite</a></li>
+    <li><a href="become__a_kite_instructor.html">Become an Instructor</a></li>
+    <li><a href="certify_school.html">Certify your School</a></li>
+    <li><a href="about_us.html">About Us</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+   </menu>
+   <div id="copyright">&copy Copyright 2011 WorldKite.org - All rights reserved.<br />
+   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />Work materials and information to members is<br />
+   licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons</a>
+   </div> 
+  </div>
+ </div>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+    (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
+
+</body>
+</html>
+ 
